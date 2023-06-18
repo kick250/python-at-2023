@@ -16,18 +16,12 @@ def create_people(people):
   all_people = AllPeoples.build()
   all_people.create(people)
 
-def show_all_peoples():
-  peoples = get_all_peoples()
-  print(peoples_summary_view(peoples))
-
-def get_all_peoples():
-  all_people = AllPeoples.build()
-  return all_people.get_all()
-
-def main():
+def insert_flow():
   people = get_people_from_form() # montando pessoa com dados do form
   create_people(people) # criando ela no repositorio
-  show_all_peoples()
+
+def main():
+  insert_flow()
 
 if __name__ == "__main__":
   main()

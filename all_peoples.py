@@ -1,4 +1,4 @@
-from operator import attrgetter
+from exceptions import PeopleNotFoundException
 from people import People
 from datetime import datetime as Datetime
 
@@ -7,24 +7,10 @@ class AllPeoples():
 
   @classmethod
   def build(cls):
-    return AllPeoples();
-
-  @classmethod
-  def delete_all(cls):
-    cls.__peoples = []
-
-  def create(self, people):
-    if people.id == None:
-      people.id = self.__new_id()
-
-    self.__add_people(people)
-
-  def create_collection(self, peoples):
-    for people in peoples:
-      self.create(people)
+    return AllPeoples()
 
   def get_all(self):
-    return self.__peoples
+    return self.__peoples.copy()
 
   def get_by_id(self, id):
     for people in self.get_all():
@@ -33,6 +19,27 @@ class AllPeoples():
   def get_by_cpf(self, cpf):
     for people in self.get_all():
       if people.cpf == cpf: return people
+
+  def create(self, people):
+    if people.id == None:
+      people.id = self.__new_id()
+
+    self.__add_people(people)
+
+  def delete_by_id(self, id):
+    if not self.is_exiting_id(id):
+      raise PeopleNotFoundException()
+
+    self.__delete_by_id(id)
+
+  def delete_all(self):
+    self.__peoples.clear()
+
+  def is_exiting_id(self, id):
+    for people in self.get_all():
+      if people.id == id: return True
+
+    return False
 
   def count(self):
     return len(self.get_all())
@@ -44,20 +51,31 @@ class AllPeoples():
     return self.count() + 1
 
   def __add_people(self, people):
-    people_position = None
-    for saved_people in self.get_all():
-      if saved_people.id != people.id: continue
+    position = self.__get_position_by_id(people.id)
 
-      position = saved_people.id - 1 # -1 pq o id 1 ocupa a posicao 0
-      people_position = position
-      break
+    if position == None:
+      position = self.count()
 
-    if people_position == None:
-      people_position = self.count()
+    self.__peoples.insert(position, people)
+    self.__organize_peoples()
 
-    self.__peoples.insert(people_position, people)
+  def __delete_by_id(self, id):
+    position = self.__get_position_by_id(id)
+
+    self.__peoples.pop(position)
     self.__organize_peoples()
 
   def __organize_peoples(self):
     for i, people in enumerate(self.get_all()):
       people.id = i + 1
+
+  def __get_position_by_id(self, id):
+    people_position = None
+    for people in self.get_all():
+      if people.id != id: continue
+
+      position = people.id - 1 # -1 pq o id 1 ocupa a posicao 0
+      people_position = position
+      break
+    return people_position
+

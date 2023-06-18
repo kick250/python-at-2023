@@ -30,7 +30,7 @@ class People():
 
   def get_formatted_cpf(self):
     if self.__cpf == None:
-      return "";
+      return ""
 
     return re.sub("(\d{3})(\d{3})(\d{3})(\d{2})", r'\1.\2.\3-\4', self.cpf)
 
