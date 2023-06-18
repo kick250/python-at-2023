@@ -11,7 +11,7 @@ def input_name(message = "Digite o nome: "):
 
   return name
 
-def input_number(message = "Digite um numero: ", allow_none = False):
+def input_number(message = "Digite um numero: ", allow_none = False, min = None):
   value_parsed = None
   while value_parsed == None:
     try:
@@ -20,10 +20,14 @@ def input_number(message = "Digite um numero: ", allow_none = False):
       if allow_none and len(value) == 0:
         return None
 
+      if min != None and int(value) < min:
+        print("O valor deve ser maior que zero.")
+        continue
+
       value_parsed = int(value)
     except ValueError:
       print("valor invalido digitado.")
-      next
+      continue
   return value_parsed
 
 def input_date(message = "Digite a data: ", date_format = "%d/%m/%Y"):
@@ -34,7 +38,7 @@ def input_date(message = "Digite a data: ", date_format = "%d/%m/%Y"):
       date = datetime.strptime(value, date_format)
     except ValueError:
       print("valor invalido digitado.")
-      next
+      continue
   return date
 
 def input_cpf(message = "Digite a data: "):
@@ -51,7 +55,7 @@ def input_cpf(message = "Digite a data: "):
         cpf = value
     except ValueError:
       print("valor invalido digitado.")
-      next
+      continue
   return str(cpf)
 
 def people_summary_view(people):

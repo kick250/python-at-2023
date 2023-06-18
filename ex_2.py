@@ -5,7 +5,7 @@ from helpers import input_number, input_date, input_cpf, input_name, peoples_sum
 
 def get_people_from_form(): # formulario paga capturar dados da pessoa
   print("Formulario de pessoa")
-  id = input_number(message = "Digite o ID: ", allow_none = True) # pegando id
+  id = input_number(message = "Digite o ID: ", allow_none = True, min = 1) # pegando id
   name = input_name(message = "Digite o nome: ") # pegando nome
   cpf = input_cpf(message = "Digite o CPF(somente numeros): ") # pegando cpf
   birthdate = input_date(message = "Digite a data de nascimento(ex: 12/12/2012): ") # pegando data

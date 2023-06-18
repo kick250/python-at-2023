@@ -44,15 +44,20 @@ class AllPeoples():
     return self.count() + 1
 
   def __add_people(self, people):
-    self.__peoples.append(people)
+    people_position = None
+    for saved_people in self.get_all():
+      if saved_people.id != people.id: continue
+
+      position = saved_people.id - 1 # -1 pq o id 1 ocupa a posicao 0
+      people_position = position
+      break
+
+    if people_position == None:
+      people_position = self.count()
+
+    self.__peoples.insert(people_position, people)
     self.__organize_peoples()
 
   def __organize_peoples(self):
-    self.__peoples.reverse() # manter o id do mais recente
-    self.__peoples.sort(key = attrgetter('id'))
-
-    ids = []
-    for people in self.get_all():
-      if people.id in ids:
-        people.id += 1
-      ids.append(people.id)
+    for i, people in enumerate(self.get_all()):
+      people.id = i + 1
