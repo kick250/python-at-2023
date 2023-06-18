@@ -47,7 +47,8 @@ def input_cpf(message = "Digite a data: "):
         print("tamanho do cpf invalido.")
         continue
 
-      cpf = int(value)
+      if str(int(value)):
+        cpf = value
     except ValueError:
       print("valor invalido digitado.")
       next
