@@ -1,6 +1,7 @@
 from datetime import datetime as Datetime
 from all_peoples import AllPeoples
 from people import People
+import helpers
 
 
 def get_peoples(): # funcao para pegar pessoas
@@ -16,22 +17,7 @@ def get_peoples(): # funcao para pegar pessoas
   return all_peoples.get_all() # pegando as pessoas do repositorio
 
 def peoples_summary_view(peoples): # criando visualizacao de pessoas cadastradas
-  SEPARATOR = "\n"
-  result = []
-
-  if len(peoples) == 0: # verificando se a lista ta vazia
-    result.append(35 * "-")
-    result.append("Não existem pessoas cadastradas.")
-  else:
-    for people in peoples:
-      result.append(35 * "-")
-      result.append(f"Id: {people.id}")
-      result.append(f"Nome: {people.name}")
-      result.append(f"Cpf: {people.get_formatted_cpf()}")
-      result.append(f"Data de nascimento: {people.get_formatted_birthdate()}")
-  result.append(35 * "-")
-
-  return SEPARATOR.join(result)
+  return helpers.peoples_summary_view(peoples)
 
 def main():
   peoples = get_peoples() # pegando pesssoas
