@@ -3,11 +3,14 @@ from datetime import datetime
 
 def input_name(message = "Digite o nome: "):
   name = None
-  while name == None or len(name) <= 0:
+  while name == None or len(name) <= 0 or len(name.split(" ")) != 2:
     name = input(message).strip()
 
     if len(name) <= 0:
       print("Nome nao pode ser vazio")
+
+    if len(name.split(" ")) != 2:
+      print("Voce deve preencher o nome e um dos sobrenomes.")
 
   return name
 
