@@ -66,6 +66,7 @@ def people_summary_view(people):
   result.append(f"Nome: {people.name}")
   result.append(f"Cpf: {people.get_formatted_cpf()}")
   result.append(f"Data de nascimento: {people.get_formatted_birthdate()}")
+  result.append(f"Dias desde o nascimento: {people.get_days_since_of_birthdate()}")
 
   return SEPARATOR.join(result)
 

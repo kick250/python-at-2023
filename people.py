@@ -1,4 +1,5 @@
 import re
+from datetime import datetime as Datetime
 
 
 class People():
@@ -19,6 +20,10 @@ class People():
 
   def update_last_name(self, new_last_name):
     self.name = " ".join([self.first_name, new_last_name])
+
+  def get_days_since_of_birthdate(self):
+    delta = Datetime.today() - self.birthdate
+    return delta.days
 
   @property
   def first_name(self):

@@ -18,10 +18,12 @@ def test_peoples_summary_view():
     'Id: 1', 'Nome: Ana Julia',
     'Cpf: 328.112.630-80',
     'Data de nascimento: 20/06/2004',
+    f'Dias desde o nascimento: {people1.get_days_since_of_birthdate()}',
     35 * '-',
     'Id: 2', 'Nome: Paulo Silva',
     'Cpf: 556.410.860-45',
     'Data de nascimento: 22/10/2001',
+    f'Dias desde o nascimento: {people2.get_days_since_of_birthdate()}',
     35 * '-'
   ])
 
