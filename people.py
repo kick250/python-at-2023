@@ -16,3 +16,18 @@ class People():
 
   def get_formatted_birthdate(self):
     return self.birthdate.strftime("%d/%m/%Y")
+
+  def update_last_name(self, new_last_name):
+    self.name = " ".join([self.first_name, new_last_name])
+
+  @property
+  def first_name(self):
+    if self.name == None: return ""
+
+    return self.name.split(" ")[0]
+
+  @property
+  def last_name(self):
+    if self.name == None: return ""
+
+    return self.name.split(" ")[-1]
