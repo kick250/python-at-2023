@@ -16,6 +16,8 @@ class AllPeoples():
     for people in self.get_all():
       if people.id == id: return people
 
+    raise PeopleNotFoundException()
+
   def get_by_cpf(self, cpf):
     for people in self.get_all():
       if people.cpf == cpf: return people
@@ -25,6 +27,9 @@ class AllPeoples():
       people.id = self.__new_id()
 
     self.__add_people(people)
+
+  def update(self, people):
+    pass
 
   def delete_by_id(self, id):
     if not self.is_exiting_id(id):
