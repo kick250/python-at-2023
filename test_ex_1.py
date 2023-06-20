@@ -1,4 +1,4 @@
-from datetime import datetime as Datetime
+from datetime import date as Date
 import ex_1
 from people import People
 
@@ -9,8 +9,8 @@ def test_get_peoples():
     assert people.__class__ == People
 
 def test_peoples_summary_view():
-  people1 = People(1, "Ana Julia", "32811263080", Datetime(2004, 6, 20))
-  people2 = People(2, "Paulo Silva", "55641086045", Datetime(2001, 10, 22))
+  people1 = People(1, "Ana Julia", "32811263080", Date(2004, 6, 20))
+  people2 = People(2, "Paulo Silva", "55641086045", Date(2001, 10, 22))
   peoples = [people1, people2]
 
   expected_view = "\n".join([

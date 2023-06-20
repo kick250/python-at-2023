@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date as Date
 from exceptions import InvalidInputException
 
 
@@ -38,12 +38,17 @@ def input_number(message = "Digite um numero: ", allow_none = False, min = None,
       continue
   return value_parsed
 
-def input_date(message = "Digite a data: ", date_format = "%d/%m/%Y"):
+def input_date(message = "Digite a data: ", allow_future = True):
   date = None
   while date == None:
     try:
       value = input(message).strip()
-      date = datetime.strptime(value, date_format)
+      date_value = convert_date_from_string(value)
+
+      if not allow_future and date_value > Date.today():
+        __raise_invalid_input("Essa data não pode ser do futuro.")
+
+      date = date_value
     except ValueError:
       __raise_invalid_input("valor invalido digitado.")
       continue
@@ -66,6 +71,10 @@ def input_cpf(message = "Digite a data: "):
       __raise_invalid_input("valor invalido digitado.")
       continue
   return str(cpf)
+
+def convert_date_from_string(date_string):
+  day, month, year = date_string.split('/') # ex: 12/12/2000
+  return Date(int(year), int(month), int(day))
 
 def __raise_invalid_input(message):
   raise InvalidInputException(message)

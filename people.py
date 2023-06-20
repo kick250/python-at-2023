@@ -1,5 +1,5 @@
 import re
-from datetime import datetime as Datetime
+from datetime import date as Date
 
 
 class People():
@@ -22,7 +22,8 @@ class People():
     self.name = " ".join([self.first_name, new_last_name])
 
   def get_days_since_of_birthdate(self):
-    delta = Datetime.today() - self.birthdate
+    today = Date.today()
+    delta = today - self.birthdate
     return delta.days
 
   @property

@@ -8,7 +8,7 @@ def get_people_from_form(): # formulario paga capturar dados da pessoa
   id = input_number(message = "Digite o ID: ", allow_none = True, min = 1) # pegando id
   name = input_name(message = "Digite o nome: ") # pegando nome
   cpf = input_cpf(message = "Digite o CPF(somente numeros): ") # pegando cpf
-  birthdate = input_date(message = "Digite a data de nascimento(ex: 12/12/2012): ") # pegando data
+  birthdate = input_date(message = "Digite a data de nascimento(ex: 12/12/2012): ", allow_future = False) # pegando data
 
   return People(id, name, cpf, birthdate) # criando pessoa
 

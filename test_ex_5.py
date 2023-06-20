@@ -1,12 +1,12 @@
 from all_peoples import AllPeoples
-from datetime import datetime as Datetime
+from datetime import date as Date
 from people import People
 from exceptions import PeopleNotFoundException
 import ex_5
 
 def test_search_by_id():
   all_peoples = AllPeoples.build()
-  people1 = People(1, "Ana Julia", "32811263080", Datetime(2004, 6, 20))
+  people1 = People(1, "Ana Julia", "32811263080", Date(2004, 6, 20))
   all_peoples.create(people1)
 
   found_people = ex_5.get_people_by_id(people1.id)
@@ -33,9 +33,9 @@ def test_search_by_id_when_not_found():
 def test_switch_last_names():
   all_peoples = AllPeoples.build()
 
-  people1 = People(1, "Paulo Silva", "55641086045", Datetime(2001, 10, 22))
+  people1 = People(1, "Paulo Silva", "55641086045", Date(2001, 10, 22))
   all_peoples.create(people1)
-  people2 = People(2, "Juliana Paulino", "44617331069", Datetime(2000, 1, 23))
+  people2 = People(2, "Juliana Paulino", "44617331069", Date(2000, 1, 23))
   all_peoples.create(people2)
 
   ex_5.switch_last_names(people1, people2)

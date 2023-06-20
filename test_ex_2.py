@@ -1,13 +1,13 @@
 from people import People
 from all_peoples import AllPeoples
-from datetime import datetime as Datetime
+from datetime import date as Date
 import ex_2
 
 
 def test_create_people():
   all_peoples = AllPeoples.build()
   all_peoples.delete_all()
-  people = People(1, "Ana Julia", "32811263080", Datetime(2004, 6, 20))
+  people = People(1, "Ana Julia", "32811263080", Date(2004, 6, 20))
 
   ex_2.create_people(people)
 
@@ -23,9 +23,9 @@ def test_create_people_with_existing_id():
   all_peoples = AllPeoples.build()
   all_peoples.delete_all()
 
-  people1 = People(1, "Ana Julia", "32811263080", Datetime(2004, 6, 20))
-  people2 = People(2, "Gustavo Silva", "55641086045", Datetime(2001, 10, 22))
-  people_with_existing_id = People(1, "Paulo Silva", "99330737021", Datetime(2001, 10, 22))
+  people1 = People(1, "Ana Julia", "32811263080", Date(2004, 6, 20))
+  people2 = People(2, "Gustavo Silva", "55641086045", Date(2001, 10, 22))
+  people_with_existing_id = People(1, "Paulo Silva", "99330737021", Date(2001, 10, 22))
 
   ex_2.create_people(people1)
   ex_2.create_people(people2)
@@ -52,7 +52,7 @@ def test_create_people_with_existing_id():
 def test_create_people_with_id_none():
   all_peoples = AllPeoples.build()
   all_peoples.delete_all()
-  people = People(None, "Ana Julia", "32811263080", Datetime(2004, 6, 20))
+  people = People(None, "Ana Julia", "32811263080", Date(2004, 6, 20))
 
   ex_2.create_people(people)
 

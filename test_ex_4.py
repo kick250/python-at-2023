@@ -1,12 +1,12 @@
 from all_peoples import AllPeoples
-from datetime import datetime as Datetime
+from datetime import date as Date
 from people import People
 from exceptions import PeopleNotFoundException
 import ex_4
 
 def test_search_by_id():
   all_peoples = AllPeoples.build()
-  people1 = People(1, "Ana Julia", "32811263080", Datetime(2004, 6, 20))
+  people1 = People(1, "Ana Julia", "32811263080", Date(2004, 6, 20))
   all_peoples.create(people1)
 
   found_people = ex_4.get_people_by_id(people1.id)
@@ -32,7 +32,7 @@ def test_search_by_id_when_not_found():
 
 def test_update_cpf():
   all_peoples = AllPeoples.build()
-  people1 = People(1, "Ana Julia", "32811263080", Datetime(2004, 6, 20))
+  people1 = People(1, "Ana Julia", "32811263080", Date(2004, 6, 20))
   all_peoples.create(people1)
 
   new_cpf = '39429017063'

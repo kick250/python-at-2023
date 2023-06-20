@@ -1,5 +1,5 @@
 from all_peoples import AllPeoples
-from datetime import datetime as Datetime
+from datetime import date as Date
 from people import People
 from exceptions import PeopleNotFoundException
 import ex_3
@@ -7,9 +7,9 @@ import ex_3
 
 def test_delete_people():
   all_peoples = AllPeoples.build()
-  people1 = People(1, "Ana Julia", "32811263080", Datetime(2004, 6, 20))
-  people2 = People(2, "Paulo Silva", "55641086045", Datetime(2001, 10, 22))
-  people3 = People(3, "Juliana Paulino", "44617331069", Datetime(2000, 1, 23))
+  people1 = People(1, "Ana Julia", "32811263080", Date(2004, 6, 20))
+  people2 = People(2, "Paulo Silva", "55641086045", Date(2001, 10, 22))
+  people3 = People(3, "Juliana Paulino", "44617331069", Date(2000, 1, 23))
   all_peoples.create(people1)
   all_peoples.create(people2)
   all_peoples.create(people3)
