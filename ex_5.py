@@ -24,11 +24,11 @@ def switch_last_names(people1, people2):
 
 def switch_last_name_flow():
   print("Fazendo troca de nomes: ")
-  people1_id = ask_people_id("Digite o id da pessoa 1: ") # capturando id da pessoa 1
-  people2_id = ask_people_id("Digite o id da pessoa 2: ") # capturando id da pessoa 2
 
   try:
+    people1_id = ask_people_id("Digite o id da pessoa 1: ") # capturando id da pessoa 1
     people1 = get_people_by_id(people1_id) # encontrando pessoa 1
+    people2_id = ask_people_id("Digite o id da pessoa 2: ") # capturando id da pessoa 2
     people2 = get_people_by_id(people2_id) # encontrando pessoa 2
 
     if ask_confirmation():

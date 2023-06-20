@@ -1,5 +1,6 @@
 from all_actions import AllActions
 from helpers import input_number
+from exceptions import InvalidInputException
 
 
 def get_options():
@@ -22,10 +23,13 @@ def ask_for_option(options):
 
 def main():
   while True:
-    options = get_options()
-    action_id = ask_for_option(options)
-    action = get_action_by_id(action_id)
-    action['action']() # implementar confirmacao em cada uma
+    try:
+      options = get_options() # buscando opcoes disponiveis
+      action_id = ask_for_option(options) # pergundao opcao para usuario
+      action = get_action_by_id(action_id) # pegando acao para executar
+      action['action']() # executando acao pedida pelo usuario
+    except InvalidInputException as exception: # tratando erro de input invalido
+      print(str(exception))
 
 if __name__ == "__main__":
   main()

@@ -1,4 +1,5 @@
 from datetime import datetime
+from exceptions import InvalidInputException
 
 
 def input_name(message = "Digite o nome: "):
@@ -7,12 +8,12 @@ def input_name(message = "Digite o nome: "):
     name = input(message).strip()
 
     if len(name) <= 0:
-      print("Nome nao pode ser vazio")
+      __raise_invalid_input("Nome nao pode ser vazio")
 
     if len(name.split(" ")) != 2:
-      print("Voce deve preencher o nome e um dos sobrenomes.")
+      __raise_invalid_input("Voce deve preencher o nome e um sobrenome.")
 
-  return name
+  return str(name).title()
 
 def input_number(message = "Digite um numero: ", allow_none = False, min = None, max = None):
   value_parsed = None
@@ -24,16 +25,16 @@ def input_number(message = "Digite um numero: ", allow_none = False, min = None,
         return None
 
       if min != None and int(value) < min:
-        print("O valor deve ser maior que zero.")
+        __raise_invalid_input("O valor deve ser maior que zero.")
         continue
 
       if max != None and int(value) > max:
-        print(f"O valor deve ser menor ou igual a {max}.")
+        __raise_invalid_input(f"O valor deve ser menor ou igual a {max}.")
         continue
 
       value_parsed = int(value)
     except ValueError:
-      print("valor invalido digitado.")
+      __raise_invalid_input("valor invalido digitado.\nO valor deve ser um numero.")
       continue
   return value_parsed
 
@@ -44,7 +45,7 @@ def input_date(message = "Digite a data: ", date_format = "%d/%m/%Y"):
       value = input(message).strip()
       date = datetime.strptime(value, date_format)
     except ValueError:
-      print("valor invalido digitado.")
+      __raise_invalid_input("valor invalido digitado.")
       continue
   return date
 
@@ -54,16 +55,20 @@ def input_cpf(message = "Digite a data: "):
     try:
       value = input(message).strip()
 
+      int(value)
+
       if len(value) != 11:
-        print("tamanho do cpf invalido.")
+        __raise_invalid_input("tamanho do cpf invalido.")
         continue
 
-      if str(int(value)):
-        cpf = value
+      cpf = value
     except ValueError:
-      print("valor invalido digitado.")
+      __raise_invalid_input("valor invalido digitado.")
       continue
   return str(cpf)
+
+def __raise_invalid_input(message):
+  raise InvalidInputException(message)
 
 def ask_confirmation():
   while True:

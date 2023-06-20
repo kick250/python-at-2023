@@ -1,6 +1,4 @@
 from exceptions import PeopleNotFoundException
-from people import People
-from datetime import datetime as Datetime
 
 class AllPeoples():
   __peoples = []
