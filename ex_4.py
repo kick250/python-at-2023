@@ -12,7 +12,7 @@ def get_people_by_id(id):
 
 def ask_for_new_cpf(people):
   print(f"O cpf do {people.name} atual é: {people.get_formatted_cpf()}")
-  return input_cpf(message = "Qual sera o novo cpf(somente numeros): ")
+  return input_cpf(message = "Digite o CPF(ex: 111.222.333-00): ") # pegando cpf
 
 def update_cpf(people, new_cpf):
   all_peoples = AllPeoples.build()

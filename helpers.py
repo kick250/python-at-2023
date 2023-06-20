@@ -1,5 +1,6 @@
 from datetime import date as Date
-from exceptions import InvalidInputException
+from exceptions import InvalidInputException, InvalidCPFException
+from check_cpf_service import CheckCpfService
 
 
 def input_name(message = "Digite o nome: "):
@@ -59,13 +60,7 @@ def input_cpf(message = "Digite a data: "):
   while cpf == None:
     try:
       value = input(message).strip()
-
-      int(value)
-
-      if len(value) != 11:
-        __raise_invalid_input("tamanho do cpf invalido.")
-        continue
-
+      validate_cpf(value)
       cpf = value
     except ValueError:
       __raise_invalid_input("valor invalido digitado.")
@@ -75,6 +70,14 @@ def input_cpf(message = "Digite a data: "):
 def convert_date_from_string(date_string):
   day, month, year = date_string.split('/') # ex: 12/12/2000
   return Date(int(year), int(month), int(day))
+
+def validate_cpf(cpf):
+  try:
+    service = CheckCpfService()
+    service.validate(cpf)
+    return True
+  except InvalidCPFException as exception:
+    __raise_invalid_input(str(exception))
 
 def __raise_invalid_input(message):
   raise InvalidInputException(message)

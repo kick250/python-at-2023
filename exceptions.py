@@ -3,5 +3,7 @@ class PeopleNotFoundException(Exception):
     super().__init__(message)
 
 class InvalidInputException(Exception):
-  def __init__(self, message):
-    super().__init__(message)
+  pass
+
+class InvalidCPFException(Exception):
+  pass
