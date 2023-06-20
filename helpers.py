@@ -14,7 +14,7 @@ def input_name(message = "Digite o nome: "):
 
   return name
 
-def input_number(message = "Digite um numero: ", allow_none = False, min = None):
+def input_number(message = "Digite um numero: ", allow_none = False, min = None, max = None):
   value_parsed = None
   while value_parsed == None:
     try:
@@ -25,6 +25,10 @@ def input_number(message = "Digite um numero: ", allow_none = False, min = None)
 
       if min != None and int(value) < min:
         print("O valor deve ser maior que zero.")
+        continue
+
+      if max != None and int(value) > max:
+        print(f"O valor deve ser menor ou igual a {max}.")
         continue
 
       value_parsed = int(value)
@@ -61,28 +65,10 @@ def input_cpf(message = "Digite a data: "):
       continue
   return str(cpf)
 
-def people_summary_view(people):
-  SEPARATOR = "\n"
-  result = []
+def ask_confirmation():
+  while True:
+    response = input("Tem certeza que deseja realizar esta ação?(sim/não) ").strip().lower()
+    if response == "sim": return True
+    elif response == "não": return False
+    else: print("Reposta inválida.")
 
-  result.append(f"Id: {people.id}")
-  result.append(f"Nome: {people.name}")
-  result.append(f"Cpf: {people.get_formatted_cpf()}")
-  result.append(f"Data de nascimento: {people.get_formatted_birthdate()}")
-  result.append(f"Dias desde o nascimento: {people.get_days_since_of_birthdate()}")
-
-  return SEPARATOR.join(result)
-
-def peoples_summary_view(peoples): # criando visualizacao de pessoas cadastradas
-  SEPARATOR = "\n"
-  result = []
-
-  if len(peoples) == 0: # verificando se a lista ta vazia
-    result.append(35 * "-")
-    result.append("Não existem pessoas cadastradas.")
-  else:
-    for people in peoples:
-      result.append(35 * "-")
-      result.append(people_summary_view(people))
-  result.append(35 * "-")
-  return SEPARATOR.join(result)

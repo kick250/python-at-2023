@@ -1,6 +1,6 @@
 from people import People
 from all_peoples import AllPeoples
-from helpers import input_number, input_date, input_cpf, input_name, peoples_summary_view
+from helpers import input_number, input_date, input_cpf, input_name, ask_confirmation
 
 
 def get_people_from_form(): # formulario paga capturar dados da pessoa
@@ -18,7 +18,9 @@ def create_people(people):
 
 def insert_flow():
   people = get_people_from_form() # montando pessoa com dados do form
-  create_people(people) # criando ela no repositorio
+  if ask_confirmation(): # pedindo confirmacao
+    create_people(people) # criando ela no repositorio
+    print("Pessoa criada com sucesso.")
 
 def main():
   insert_flow()

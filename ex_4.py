@@ -1,6 +1,6 @@
 from exceptions import PeopleNotFoundException
 from all_peoples import AllPeoples
-from helpers import input_number, input_cpf
+from helpers import input_number, input_cpf, ask_confirmation
 
 
 def ask_people_id():
@@ -26,7 +26,10 @@ def update_cpf_flow():
   try:
     people = get_people_by_id(people_id) # encontrando pessoa
     cpf = ask_for_new_cpf(people) # capturando novo cpf
-    update_cpf(people, cpf) # atualizando cpf
+
+    if ask_confirmation():
+      update_cpf(people, cpf) # atualizando cpf
+      print("Pessoa atualizada com sucesso.")
   except PeopleNotFoundException as e: # tratando exception de nao encontrado
     print(str(e))
 
